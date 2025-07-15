@@ -81,12 +81,13 @@ def download_youtube_audio(video_url: str, output_dir="downloads") -> str:
     output_template = os.path.join(output_dir, filename)
 
     command = [
-        "yt-dlp",
-        "-x", "--audio-format", "mp3",
-        "-o", output_template,
-        video_url
-    ]
-
+    "yt-dlp",
+    "--user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0 Safari/537.36",
+    "-x", "--audio-format", "mp3",
+    "-o", output_template,
+    video_url
+]
+    print(f"📥 Downloading audio from: {video_url}")
     try:
         subprocess.run(command, check=True)
         return output_template
